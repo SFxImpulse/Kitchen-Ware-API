@@ -1,0 +1,13 @@
+const Pool = require("pg").Pool;
+
+// pg is required to run the database from terminal.
+
+const pool = new Pool({
+  user: "DATABASE_USER", // Modify with the user for your database.
+  password: "USER_PASSWORD", // Modify with the password for your user.
+  database: "NAME_OF_DATABASE", // Modify with the name of your database.
+  host: "localhost", // (default)
+  port: 5432 // (default)
+});
+
+module.exports = pool;
