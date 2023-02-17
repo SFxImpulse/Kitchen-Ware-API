@@ -30,10 +30,21 @@ app.get("/products/product/:product_code", async(req, res) => {
       "SELECT * FROM products WHERE product_code = $1",
       [product_code]
     );
-    console.log(req.params);
     res.json(product.rows);
   } catch (err) {
     console.error(err.message);
+  }
+});
+
+app.get("/products/quantity", async(req, res) => {
+  try {
+    const lowQuantity = await pool.query(
+      "SELECT * FROM products WHERE quantity < $1",
+      [6]
+    );
+    res.json(lowQuantity.rows);
+  } catch (err) {
+    console.error(err.message);    
   }
 });
 
@@ -44,7 +55,6 @@ app.get("/products/brand/:brand", async(req, res) => {
       "SELECT * FROM products WHERE brand = $1",
       [brand]
     );
-    console.log(req.params);
     res.json(product.rows);
   } catch (err) {
     console.error(err.message);
